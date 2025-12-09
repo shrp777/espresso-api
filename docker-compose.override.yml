@@ -1,0 +1,20 @@
+# Développement
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      # Synchronisation du code source pour hot reloading
+      - ./api/src:/app/src:ro
+      - ./api/tsconfig.json:/app/tsconfig.json:ro
+      # Volume nommé pour node_modules (évite les conflits)
+      - api_node_modules:/app/node_modules
+    command: npm run dev
+
+volumes:
+  api_node_modules:

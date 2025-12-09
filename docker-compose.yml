@@ -1,0 +1,20 @@
+# Production
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      target: production
+    container_name: espresso-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - espresso-network
+
+networks:
+  espresso-network:
+    driver: bridge
