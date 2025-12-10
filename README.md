@@ -111,7 +111,9 @@ Le Dockerfile utilise une approche multi-stage pour optimiser les builds :
 
 ### docker-compose.yml (Production)
 
-- __Important__ : le build de production nécessite la création d'un fichier package-lock.json sur la machine hôte.
+- __Important__ : le build de production nécessite la création d'un fichier package-lock.json sur la machine hôte :
+  - `cd api`
+  - `npm install`
 - Build avec le stage `production` du Dockerfile
 - Exécute le code compilé
 - Image optimisée
