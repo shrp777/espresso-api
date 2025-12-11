@@ -34,14 +34,20 @@ npm install
 ```
 
 ```bash
+# Build de l'image version dev
+docker compose build
+
+# Build de l'image version prod
+docker compose -f docker-compose.yml build
+
 # Démarrage en mode développement
-docker-compose up
+docker compose up
 
 # Build de l'image et démarrage en mode développement
-docker-compose up --build
+docker compose up --build
 
 # Démarrage en arrière-plan
-docker-compose up -d
+docker compose up -d
 ```
 
 Chaque modification du code source dans `api/src/` produit un redémarrage automatique de l'application grâce à __nodemon__.
@@ -52,13 +58,20 @@ Pour lancer en mode production, il faut préciser le fichier YAML à employer, s
 
 ```bash
 # Démarrer en mode production
-docker-compose -f docker-compose.yml up
+docker compose -f docker-compose.yml up
 
-# Ou en arrière-plan
+# Démarrer en mode production en arrière-plan
 docker-compose -f docker-compose.yml up -d
 
 # Build de l'image et démarrage
 docker-compose -f docker-compose.yml up --build
+
+# Build de l'image, démarrer en mode production et activation du mode watch (rebuild dynamique en cas de modification du code source)
+docker compose -f docker-compose.watch.yml up --build --watch
+
+# Démarrer en mode production et activation du mode watch (rebuild dynamique en cas de modification du code source)
+docker compose -f docker-compose.yml up --watch
+
 ```
 
 ### Commandes utiles

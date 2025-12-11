@@ -1,6 +1,7 @@
 # Développement
 services:
   api:
+    image: espresso:dev
     build:
       context: ./api
       dockerfile: Dockerfile

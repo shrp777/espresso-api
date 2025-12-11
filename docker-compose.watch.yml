@@ -1,11 +1,19 @@
 # Production
 services:
   api:
-    image: espresso:prod
+    image: espresso-api:prod
     build:
       context: ./api
       dockerfile: Dockerfile
       target: production
+    develop:
+      watch:
+        - action: rebuild
+          path: ./api
+          target: /src
+          initial_sync: true
+          ignore:
+            - node_modules/
     container_name: espresso-api
     restart: unless-stopped
     ports:
